@@ -1,0 +1,15 @@
+[Unit]
+Description=Celery Beat for prediction Django project
+After=network.target
+
+[Service]
+Type=simple
+User=${USER}
+Group=${USER}
+Environment=PATH=/home/hojiwaq/Desktop/SAT/myenv/bin
+WorkingDirectory=/home/hojiwaq/Desktop/SAT/prediction
+ExecStart=/home/hojiwaq/Desktop/SAT/myenv/bin/celery -A prediction beat --loglevel=info --logfile=/home/hojiwaq/Desktop/SAT/prediction/logs/celery_beat.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
