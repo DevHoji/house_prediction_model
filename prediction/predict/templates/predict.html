@@ -129,8 +129,10 @@
             </div>
             <input type="submit" value="Predict Price">
         </form>
-        {% if prediction %}
-            <div class="result">Predicted Price: ${{ prediction }}</div>
+        {% if total_price %}
+            <div class="result">Predicted Total Price: ${{ total_price|floatformat:2 }}</div>
+        {% elif prediction %}
+            <div class="result">Predicted Unit Price: ${{ prediction|floatformat:2 }} / sqm</div>
         {% endif %}
         {% if error %}
             <div class="error">{{ error }}</div>

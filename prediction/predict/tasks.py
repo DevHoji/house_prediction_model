@@ -10,6 +10,11 @@ from sklearn.metrics import mean_squared_error
 import os
 import time
 from pathlib import Path
+import json
+from dotenv import load_dotenv
+
+# load environment variables from project .env if present
+load_dotenv()
 
 # Paths
 LOG_DIR = Path(__file__).resolve().parent.parent / 'logs'
@@ -53,7 +58,7 @@ except Exception:
 
 def _fetch_remote_data(url: str, timeout: int = 10, retries: int = 2):
     """Attempt to fetch CSV or JSON data from URL. Returns DataFrame or raises.
-    Accepts CSV (content-type text/csv) or JSON array of objects.
+    Accepts CSV (content-type text/csv) or JSON array of objects or wrapper {"data": [...]}.
     """
     last_exc = None
     for attempt in range(retries + 1):
@@ -69,10 +74,24 @@ def _fetch_remote_data(url: str, timeout: int = 10, retries: int = 2):
                     content_type = info.get_content_type() if hasattr(info, 'get_content_type') else ''
                     text = resp_obj.read().decode('utf-8')
 
-            # Try JSON first
+            # Try JSON body (either array or wrapper {"data": [...]})
+            try:
+                parsed = json.loads(text)
+                if isinstance(parsed, dict) and 'data' in parsed and isinstance(parsed['data'], list):
+                    return pd.DataFrame(parsed['data'])
+                if isinstance(parsed, list):
+                    return pd.DataFrame(parsed)
+                if isinstance(parsed, dict):
+                    try:
+                        return pd.json_normalize(parsed)
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+            # Try pandas read_json (handles some JSON shapes)
             try:
                 data_json = pd.read_json(text)
-                # If JSON yields a DataFrame-like structure
                 if isinstance(data_json, (pd.DataFrame, pd.Series)):
                     return pd.DataFrame(data_json)
             except Exception:

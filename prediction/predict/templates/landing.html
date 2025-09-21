@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HousePriceAI — Predictive Housing Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#9ca3af;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+    body{margin:0;background:linear-gradient(180deg,#071026 0%,#071a2a 60%);color:#e6eef6;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .container{width:100%;max-width:1100px;padding:40px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:28px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h1{font-size:34px;margin:0 0 8px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:15px}
+    .features{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+    .feature{display:flex;align-items:flex-start;gap:12px}
+    .dot{width:12px;height:12px;border-radius:3px;background:linear-gradient(180deg,#34d399,#06b6d4);margin-top:6px}
+    .cta{display:flex;gap:12px;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;background:var(--accent);color:#062023;text-decoration:none;font-weight:600;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+    .mock{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:20px;color:var(--muted);}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:22px;color:rgba(255,255,255,0.35);font-size:13px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.cta{flex-direction:column;align-items:stretch}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="card">
+        <h1>HousePriceAI</h1>
+        <p class="lead">Quick, reliable house price predictions using an adaptive model. Upload data, retrain on schedule, and get instant estimates.</p>
+        <div class="features">
+          <div class="feature"><div class="dot"></div><div><strong>Daily retraining</strong><div class="small">Model refreshes automatically to stay up-to-date.</div></div></div>
+          <div class="feature"><div class="dot"></div><div><strong>Safe validation</strong><div class="small">New models are validated before activation to avoid regressions.</div></div></div>
+          <div class="feature"><div class="dot"></div><div><strong>Simple interface</strong><div class="small">Enter a few features and get a price estimate instantly.</div></div></div>
+        </div>
+        <div class="cta">
+          <a class="btn" href="/pr/">Try a prediction</a>
+          <a class="btn secondary" href="/admin/">Admin</a>
+        </div>
+        <footer>Built for demo and testing. For production, secure credentials and run behind HTTPS.</footer>
+      </div>
+
+      <div class="card mock">
+        <h3 style="margin-top:0">Live example</h3>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="flex:1">
+            <div style="display:flex;gap:8px;margin-bottom:8px"><input style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" value="size: 2500" disabled><input style="width:100px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" value="beds: 3" disabled></div>
+            <div style="display:flex;gap:8px"><input style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" value="age: 10" disabled><button class="btn" style="padding:10px 14px">Predict →</button></div>
+          </div>
+        </div>
+        <p class="small" style="margin-top:14px">Tip: Click "Try a prediction" to open the prediction form and run the model.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

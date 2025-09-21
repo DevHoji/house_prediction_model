@@ -16,3 +16,17 @@ __pycache__/
 
 # Editor
 .vscode/
+
+# Local environment variables
+.env
+
+# ML artifacts and temporary models
+*.joblib
+ml_model.joblib
+scaler.joblib
+
+# Local sqlite DB (development)
+db.sqlite3
+
+# Celery beat schedule
+celerybeat-schedule
