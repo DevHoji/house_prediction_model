@@ -1,0 +1,18 @@
+# Virtual environment
+myenv/
+
+# Logs and runtime files
+logs/
+*.log
+retrain.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
