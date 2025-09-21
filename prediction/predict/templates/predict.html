@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(120deg, rgba(35,37,38,0.95), rgba(65,67,69,0.95)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+            background-size: cover;
+            animation: bgmove 20s linear infinite alternate;
+        }
+        @keyframes bgmove {
+            0% { background-position: center 0; }
+            100% { background-position: center 100px; }
+        }
+        .container {
+            background: rgba(255,255,255,0.92);
+            border-radius: 22px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 48px 36px 36px 36px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            animation: fadein 1.2s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #232526;
+            font-size: 2.3rem;
+            margin-bottom: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        label {
+            font-size: 1.09rem;
+            color: #414345;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+        input[type="number"] {
+            padding: 12px 14px;
+            border: 1.5px solid #d1d1d1;
+            border-radius: 9px;
+            font-size: 1.05rem;
+            background: #f7f7f7;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        input[type="number"]:focus {
+            border: 1.5px solid #0078ff;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0,120,255,0.08);
+        }
+        input[type="submit"] {
+            background: linear-gradient(90deg, #0078ff 0%, #00c6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            padding: 14px 0;
+            font-size: 1.13rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,120,255,0.10);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #0056b3 0%, #0078ff 100%);
+            box-shadow: 0 4px 16px rgba(0,120,255,0.18);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .result {
+            margin-top: 32px;
+            font-size: 1.35rem;
+            color: #0078ff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(0,120,255,0.08);
+        }
+        .error {
+            margin-top: 20px;
+            color: #e74c3c;
+            font-size: 1.13rem;
+            font-weight: 500;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 8px 18px 8px;
+            }
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 House Price Predictor</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="size">House Size (sq ft):</label>
+                <input type="number" name="size" id="size" required min="1000" max="5000" placeholder="e.g. 2500">
+            </div>
+            <div>
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <input type="number" name="bedrooms" id="bedrooms" required min="1" max="5" placeholder="e.g. 3">
+            </div>
+            <div>
+                <label for="age">House Age (years):</label>
+                <input type="number" name="age" id="age" required min="0" max="50" placeholder="e.g. 10">
+            </div>
+            <input type="submit" value="Predict Price">
+        </form>
+        {% if prediction %}
+            <div class="result">Predicted Price: ${{ prediction }}</div>
+        {% endif %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
