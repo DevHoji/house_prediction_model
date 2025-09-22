@@ -9,15 +9,6 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 # Celery Beat schedule for retraining every 24 hours
-app.conf.beat_schedule = {
-    'retrain-daily-midnight': {
-        'task': 'predict.tasks.retrain_model',
-        'schedule': crontab(minute=0, hour=0),
-        'options': {'queue': 'celery'},
-    },
-}
-
-# Keep backward-compatible connect handler
 def setup_periodic_tasks(sender, **kwargs):
     from predict.tasks import retrain_model
     sender.add_periodic_task(
@@ -27,6 +18,3 @@ def setup_periodic_tasks(sender, **kwargs):
     )
 
 app.on_after_finalize.connect(setup_periodic_tasks)
-
-# To run the Flower monitoring tool for Celery, use the following command:
-# celery -A prediction flower
