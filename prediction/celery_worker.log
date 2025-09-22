@@ -1,0 +1,15 @@
+bash: ../../myenv/bin/celery: No such file or directory
+[2025-09-22 08:34:42,425: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-09-22 08:34:42,436: INFO/MainProcess] mingle: searching for neighbors
+[2025-09-22 08:34:43,456: INFO/MainProcess] mingle: all alone
+[2025-09-22 08:34:43,471: INFO/MainProcess] celery@hojiwaq ready.
+[2025-09-22 08:34:43,474: INFO/MainProcess] Task predict.tasks.retrain_model[1e800201-fd97-4de3-bb6d-e92e7376284b] received
+[2025-09-22 08:34:43,476: INFO/MainProcess] Task predict.tasks.retrain_model[6f894f45-e424-4bf4-93bf-8ca8508e967a] received
+[2025-09-22 08:34:43,479: INFO/MainProcess] Task predict.tasks.retrain_model[4b505916-a837-4e99-b11c-f3533c325faa] received
+[2025-09-22 08:34:43,481: INFO/MainProcess] Task predict.tasks.retrain_model[b38dc8eb-da50-4f98-8e8b-6d55a58ae0d5] received
+[2025-09-22 08:34:43,912: INFO/ForkPoolWorker-7] Task predict.tasks.retrain_model[1e800201-fd97-4de3-bb6d-e92e7376284b] succeeded in 0.43624380199980806s: 'Model retrained and saved.'
+[2025-09-22 08:34:43,913: INFO/ForkPoolWorker-1] Task predict.tasks.retrain_model[4b505916-a837-4e99-b11c-f3533c325faa] succeeded in 0.4313040750002983s: 'Model retrained and saved.'
+[2025-09-22 08:34:43,918: INFO/ForkPoolWorker-8] Task predict.tasks.retrain_model[6f894f45-e424-4bf4-93bf-8ca8508e967a] succeeded in 0.4401418569996167s: 'Model retrained and saved.'
+[2025-09-22 08:34:43,918: INFO/ForkPoolWorker-2] Task predict.tasks.retrain_model[b38dc8eb-da50-4f98-8e8b-6d55a58ae0d5] succeeded in 0.43682260400055384s: 'Model retrained and saved.'
+[2025-09-22 08:35:09,755: INFO/MainProcess] Task predict.tasks.retrain_model[58082bbd-62a7-4e96-a947-cbf72386e0eb] received
+[2025-09-22 08:35:09,770: INFO/ForkPoolWorker-7] Task predict.tasks.retrain_model[58082bbd-62a7-4e96-a947-cbf72386e0eb] succeeded in 0.01421279199894343s: 'Model retrained and saved.'

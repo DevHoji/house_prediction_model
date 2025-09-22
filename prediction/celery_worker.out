@@ -1,0 +1,19 @@
+ 
+ -------------- celery@hojiwaq v5.5.3 (immunity)
+--- ***** ----- 
+-- ******* ---- Linux-5.15.0-153-generic-x86_64-with-glibc2.35 2025-09-22 08:34:41
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         prediction:0x7fd76f96d120
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     redis://localhost:6379/0
+- *** --- * --- .> concurrency: 8 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . predict.tasks.retrain_model
+
